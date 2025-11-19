@@ -21,9 +21,12 @@ def main():
         unique_titles = df_character['title'].nunique() 
         # list of unique titles
         unique_titles_list = df_character['title'].unique().tolist()
+        print("unique titles: ", unique_titles_list)
+        print("unique title counts: ", unique_titles)
         
 
         lines_per_title = 350 / unique_titles
+        print("# of lines per title: ", int(lines_per_title))
         df_character_350= pd.DataFrame()
         
 
@@ -37,7 +40,7 @@ def main():
 
         df_character_350 = df_character_350.drop(columns=['writer'])
 
-        with open(os.path.join(data_path,f'{args.character_name}_dialogue.csv'), 'w') as output_file:
+        with open(os.path.join(data_path,f'{args.character_name}_dialogue.csv'), 'w', newline='') as output_file:
             df_character_350.to_csv(output_file, index=False)
 
 
