@@ -32,10 +32,10 @@ def main():
 
         for title in unique_titles_list:
             df_title = df_character[df_character['title'] == title]
-            # get top lines_per_title rows
-            df_title_top = df_title.head(min(int(lines_per_title),len(df_title)))
+            # get random lines_per_title rows
+            df_title_random = df_title.sample(n=min(int(lines_per_title),len(df_title)))
 
-            df_character_350 = pd.concat([df_character_350, df_title_top], ignore_index=True)   
+            df_character_350 = pd.concat([df_character_350, df_title_random], ignore_index=True)   
 
 
         df_character_350 = df_character_350.drop(columns=['writer'])
