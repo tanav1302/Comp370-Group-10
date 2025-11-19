@@ -23,9 +23,15 @@ def main():
         unique_titles_list = df_character['title'].unique().tolist()
         print("unique titles: ", unique_titles_list)
         print("unique title counts: ", unique_titles)
-        
 
-        lines_per_title = 350 / unique_titles
+
+
+
+        if args.character_name == "Princess Celestia":
+            lines_per_title = 850 / unique_titles
+
+        else:
+            lines_per_title = 350 / unique_titles
         print("# of lines per title: ", int(lines_per_title))
         df_character_350= pd.DataFrame()
         
