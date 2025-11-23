@@ -27,11 +27,7 @@ def main():
 
 
 
-        if args.character_name == "Princess Celestia":
-            lines_per_title = 850 / unique_titles
-
-        else:
-            lines_per_title = 350 / unique_titles
+        lines_per_title = 350 / unique_titles
         print("# of lines per title: ", int(lines_per_title))
         df_character_350= pd.DataFrame()
         
@@ -39,7 +35,7 @@ def main():
         for title in unique_titles_list:
             df_title = df_character[df_character['title'] == title]
             # get random lines_per_title rows
-            df_title_random = df_title.sample(n=min(int(lines_per_title),len(df_title)))
+            df_title_random = df_title.sample()
 
             df_character_350 = pd.concat([df_character_350, df_title_random], ignore_index=True)   
 

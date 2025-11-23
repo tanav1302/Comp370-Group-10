@@ -16,11 +16,17 @@ def sample_character_dialogue(df, character_name, target_lines=300):
     if df_character.empty:
         print(f"ERROR: No dialogue found for '{character_name}'")
         return pd.DataFrame()
+    
+    # length of each dialogue is greater 50 characters
+    df_character = df_character[df_character["dialog"].str.len() > 50]
 
     episodes = df_character["title"].unique()
+
     total_available = len(df_character)
 
     print(f"Found {total_available} lines across {len(episodes)} episodes")
+
+
 
     if total_available <= target_lines:
         return df_character
