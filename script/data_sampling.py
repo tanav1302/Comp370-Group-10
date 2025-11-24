@@ -18,7 +18,7 @@ def sample_character_dialogue(df, character_name, target_lines=300):
         return pd.DataFrame()
     
     # length of each dialogue is greater 50 characters
-    df_character = df_character[df_character["dialog"].str.len() > 50]
+    df_character = df_character[df_character["dialog"].str.len() > 25]
 
     episodes = df_character["title"].unique()
 
