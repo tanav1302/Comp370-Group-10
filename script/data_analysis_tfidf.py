@@ -55,21 +55,29 @@ def main():
     for topic,tf_counter in topic_tf.items():
         tfidf = dict()
         for word,tf in tf_counter.items():
-            tfidf[word] = tf * topic_idf[word]
+            tfidf[word] = round((tf * topic_idf[word]),2)
         topic_tfidf[topic] = tfidf
+
+    output_path = os.path.join(output_data_path,f"top_tfidf_words.txt")
+    with open(output_path,"w") as f:
+            f.write(f"")
      # save to one csv file
     for topic,tfidf in topic_tfidf.items():
         sorted_tfidf = sorted(tfidf.items(), key=lambda x: x[1], reverse=True)
         
         top_words = sorted_tfidf[:10]
-        output_path = os.path.join(output_data_path,f"top_tfidf_words.csv")
-        df_output = pd.DataFrame(top_words, columns=["word","tf-idf"])
-        df_output.insert(0, "topic", topic)
-        if not os.path.exists(output_path):
-            df_output.to_csv(output_path, index=False)
-        else:
-            df_output.to_csv(output_path, mode='a', header=False, index=False)
-            
+        
+
+        with open(output_path,"a") as f:
+            f.write(f"{topic}:\n")
+            line = ""
+            for word,tf_idf_score in top_words:
+                line = f"{line}, {word}: {tf_idf_score}"
+
+            line = line[2:]
+            f.write(line)
+            f.write(f"\n")
+
         
 
         
