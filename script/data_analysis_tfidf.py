@@ -72,7 +72,7 @@ def main():
             f.write(f"{topic}:\n")
             line = ""
             for word,tf_idf_score in top_words:
-                line = f"{line}, {word}: {tf_idf_score}"
+                line = f"{line}, '{word}'"
 
             line = line[2:]
             f.write(line)
